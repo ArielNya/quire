@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+
+# build / preview
+.vercel/
+.output/
+.nitro/
+.tanstack/
+dist/
+.wrangler/
+
+# env & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# local sandbox
+.grok/
+.grok-plugin/
+screenshots/
+artifacts/
+.node_modules.lock
+AGENTS.md
