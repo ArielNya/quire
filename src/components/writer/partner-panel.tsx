@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ConnectionDialog } from "@/components/writer/connection-dialog";
 import { type WriterMode } from "@/lib/writer/ask";
 import { requestWriter } from "@/lib/writer/partner-api";
+import { withAgentFlight } from "@/lib/writer/flight";
 import { useApiSettings } from "@/lib/writer/api-settings";
 import { bibleBlurb, previousEnding } from "@/lib/writer/context-pack";
 import { chapterDir, scenePath } from "@/lib/writer/paths";
@@ -52,6 +53,7 @@ export function PartnerPanel({
   );
 
   async function run() {
+    await withAgentFlight(async () => {
     setBusy(true);
     setError(null);
     const prompt =
@@ -115,6 +117,7 @@ export function PartnerPanel({
       addTake(scene.id, result.text, mode);
     }
     setInstruction("");
+    });
   }
 
   return (

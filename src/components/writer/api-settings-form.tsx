@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useApiSettings } from "@/lib/writer/api-settings";
 import { requestModels } from "@/lib/writer/partner-api";
+import { withAgentFlight } from "@/lib/writer/flight";
 import { DEFAULT_BASE_URL, DEFAULT_MODEL } from "@/lib/writer/openai";
 import { cn } from "@/lib/utils";
 
@@ -33,7 +34,7 @@ export function ApiSettingsForm({ className }: { className?: string }) {
     if (!force && stamp === lastFetch.current) return;
     setBusy(true);
     setStatus("Loading models…");
-    const result = await requestModels(url, key);
+    const result = await withAgentFlight(() => requestModels(url, key));
     setBusy(false);
     lastFetch.current = stamp;
     if (!result.ok) {

@@ -3,8 +3,10 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider } from "@tanstack/react-router";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { getRouter } from "./router";
+import { installNativeLifecycle } from "./lib/writer/lifecycle";
 import "./styles.css";
 
+installNativeLifecycle();
 void StatusBar.setBackgroundColor({ color: "#0c0c0d" }).catch(() => {});
 void StatusBar.setStyle({ style: Style.Dark }).catch(() => {});
 
