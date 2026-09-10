@@ -5,6 +5,7 @@ import { HydrateGate } from "@/components/writer/hydrate-gate";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "Quire";
+const apk = import.meta.env.VITE_QUIRE_APK === "1";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -31,7 +32,21 @@ export const Route = createRootRoute({
       },
     ],
   }),
-  component: () => (
+  component: apk ? ApkRoot : WebRoot,
+});
+
+function ApkRoot() {
+  return (
+    <div className="min-h-dvh bg-background font-sans text-foreground">
+      <HydrateGate>
+        <Outlet />
+      </HydrateGate>
+    </div>
+  );
+}
+
+function WebRoot() {
+  return (
     <html lang="en" className="dark antialiased" suppressHydrationWarning>
       <head>
         <HeadContent />
@@ -46,5 +61,5 @@ export const Route = createRootRoute({
         <Scripts />
       </body>
     </html>
-  ),
-});
+  );
+}

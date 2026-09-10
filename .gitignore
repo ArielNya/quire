@@ -7,6 +7,7 @@ node_modules/
 .nitro/
 .tanstack/
 dist/
+apk-www/
 .wrangler/
 
 # env & secrets
@@ -36,3 +37,14 @@ screenshots/
 artifacts/
 .node_modules.lock
 AGENTS.md
+
+# android local
+android/local.properties
+android/.gradle/
+android/build/
+android/app/build/
+android/app/.cxx/
+android/captures/
+*.apk
+*.aab
+*.ap_

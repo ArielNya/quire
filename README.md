@@ -71,9 +71,24 @@ npm run typecheck
 npm run build
 ```
 
+## Android APK
+
+Quire can ship as a standalone Android app (Capacitor). Manuscripts stay on the phone. The partner talks straight to your DeepSeek (or other) key — no desktop, no extra server.
+
+Debug APK from this repo: GitHub → Actions → **Android APK** → download `quire-debug`.
+
+On the phone: Settings → allow installs from this source → open the APK.
+
+```bash
+npm install
+npm run apk:build
+```
+
+The file lands at `android/app/build/outputs/apk/debug/app-debug.apk`.
+
 ## Stack
 
-TanStack Start, React, Tailwind, Zustand. Partner calls go through a server function to your chosen OpenAI-compatible endpoint.
+TanStack Start (web), Capacitor (Android), React, Tailwind, Zustand. In the browser the partner goes through a server function. In the APK it uses the native HTTP stack so CORS never gets in the way.
 
 ## License
 

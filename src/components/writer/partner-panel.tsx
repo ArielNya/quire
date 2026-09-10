@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ConnectionDialog } from "@/components/writer/connection-dialog";
-import { askWriter, type WriterMode } from "@/lib/writer/ask";
+import { type WriterMode } from "@/lib/writer/ask";
+import { requestWriter } from "@/lib/writer/partner-api";
 import { useApiSettings } from "@/lib/writer/api-settings";
 import { bibleBlurb, previousEnding } from "@/lib/writer/context-pack";
 import { chapterDir, scenePath } from "@/lib/writer/paths";
@@ -83,8 +84,7 @@ export function PartnerPanel({
       setError("Add an API key in Connection.");
       return;
     }
-    const result = await askWriter({
-      data: {
+    const result = await requestWriter({
         mode,
         instruction: prompt,
         selection,
@@ -104,7 +104,6 @@ export function PartnerPanel({
         apiKey: creds.apiKey,
         baseUrl: creds.baseUrl,
         model: creds.model,
-      },
     });
     setBusy(false);
     if (!result.ok) {
